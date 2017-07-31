@@ -255,7 +255,12 @@
     <script src="js/jquery-3.2.1.min.js"></script>
 
         <script>
-        var s = skrollr.init();
+        skrollr.init({          
+            mobileCheck: function() {
+                //hack - forces mobile version to be off
+                return false;
+            }
+        });
     </script>
     <script>
 
