@@ -252,7 +252,18 @@
     <div class="btn_top"><a href="#vision1">Top</a></div>
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    
+     <script src="js/skrollr.min.js"></script>
+    <script>
+        var s = skrollr.init({
+		edgeStrategy: 'set',
+		easing: {
+			WTF: Math.random,
+			inverted: function(p) {
+				return 1-p;
+			}
+		}
+	});
+    </script>
     <script>
 
        window.sr = ScrollReveal({ reset: true });
