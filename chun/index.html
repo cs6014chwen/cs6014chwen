@@ -22,20 +22,13 @@
                 <img src="images/white.png">
             </div>
             <div class="snow">
-                <img data-0="display:block;opacity:0;" data-70="display:block;opacity:0;" data-130=";opacity:1;" src="images/yellow.png">
             </div>
             <div class="cl1"></div>
             <div class="cl2"></div>
-            <div class="star0">
-                 <img data-0="opacity: 0;display:block;" data-5="opacity: 1;top:0;right:-150px;" data-40="display:none;" src="images/skrollr/star0.png">
-                <img data-0="opacity: 0;" data-30="display:block;top:0px;right:-20px;opacity: 1;" data-50="display:block;opacity: 0.3;" data-70="display:none;" src="images/skrollr/star1.png">
-                 <img data-0="display:block;opacity: 0;" data-40="opacity: 1;top:250px;right:250px;" data-90="opacity: 0;display:none;" src="images/skrollr/star2.png">
-                <img data-0="display:block;opacity: 0;" data-80="opacity: 1;top:490px;right:415px;"data-100="opacity: 0.8;" data-110="display:none;opacity: 0;" src="images/skrollr/star3.png">
-            </div>
             <div class="title1">
-                <div class="title_line1"  data-0="width:0%;" data-100="width:90%;"></div>
+                <div class="title_line1"></div>
                 <div class="title_word"></div>
-                <div class="title_line2" data-0="width:0%;" data-100="width:90%;"></div>
+                <div class="title_line2"></div>
             </div>
         </div>
         <div class="mountian1"></div>
@@ -252,18 +245,7 @@
     <div class="btn_top"><a href="#vision1">Top</a></div>
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-     <script src="js/skrollr.min.js"></script>
-    <script>
-        var s = skrollr.init({
-		edgeStrategy: 'set',
-		easing: {
-			WTF: Math.random,
-			inverted: function(p) {
-				return 1-p;
-			}
-		}
-	});
-    </script>
+
     <script>
 
        window.sr = ScrollReveal({ reset: true });
@@ -291,6 +273,7 @@
             viewFactor:0
         });
     </script>
+
     <script>
         $(function(){
             $('[href*="#"]:not([href="#"])').click(function(){
