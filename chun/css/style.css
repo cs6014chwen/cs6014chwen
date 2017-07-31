@@ -213,6 +213,8 @@ a{
     vertical-align:middle;
     text-align: left;
     position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 .item_pic{
     width: 38%;
