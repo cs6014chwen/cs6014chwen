@@ -1,0 +1,142 @@
+@import "helper/var";
+@import "font/variables";
+@import "font/style";
+
+body {
+  font-family: 'Helvetica Neue', sans-serif, 'Microsoft JhengHei';
+  background-color: $color-secondary;
+}
+
+.btn-primary {
+  background-color: $color-primary;
+  border: 0;
+}
+.btn-secondary {
+  background: none;
+  border: 1px solid $color-third;
+  color: $color-third;
+}
+.index-page {
+  .main-img {
+    height: 90vh;
+    width: 100%;
+    background-image: url(../image/index/main.png);
+    background-color: $bg-primary;
+    background-position: center bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .main-title {
+    padding-top: 25%;
+    box-sizing: border-box;
+    text-align: center;
+    img{
+      width: 50%;
+      margin: 0 auto;
+    }
+  }
+  .link-block {
+    width: 100%;
+    display: flex;
+    padding: 10px 8%;
+    box-sizing: border-box;
+    .btn {
+      flex: 1;
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+.page-body {
+  @media (min-width:768px) {
+    max-width: 768px;
+  }
+}
+.main-banner {
+  width: 100%;
+  height: 200px;
+  background-color: $bg-primary;
+  background-image: url(../image/title01.png);
+  background-position: center bottom;
+  background-size: auto 70px;
+  background-repeat: repeat-x;
+  .day {
+    height: 50px;
+    padding: 5px;
+    box-sizing: border-box;
+    line-height: 40px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    img {
+      height: 20px;
+      margin-left: 10px;
+      box-sizing: border-box;
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
+      font-size: 28px;
+      font-weight: 800;
+      color: $color-secondary;
+    }
+  }
+  .title {
+    padding: 5% 15px 0 15px;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: center;
+  }
+}
+.content-block {
+  margin-top: -1px;
+  background-color: $color-secondary;
+  min-height: 60vh;
+  width: 100%;
+  .item {
+    display: flex;
+    padding: 10px;
+    box-align: border-box;
+    align-items: stretch;
+  }
+  .time {
+    font-size: 14px;
+    color: $color-third;
+    width: 60px;
+    padding-top: 5px;
+  }
+  .item-content {
+    padding: 5px 0 0 0;
+    flex: 1;
+    background-color: $bg-primary;
+    border-radius: 5px 0 0 5px;
+    .title {
+      color: $color-secondary;
+      font-weight: 600;
+      padding: 0 10px;
+    }
+    .note {
+      color: $main-text;
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+  }
+  .link-btns {
+    width: 30px;
+    display: block;
+    
+    .item-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      color: $color-third;
+      font-size: 20px;
+      background-color: $color-primary;
+
+      .icon {
+        margin: 0 auto;
+        color: $color-third;
+      }
+    }
+  }
+}
