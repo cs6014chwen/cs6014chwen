@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY1</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+$(function () {
+
+      $('#sendOrder').click(function (e) {
+        var status = true;
+        var title = $('#item_title').val();
+        var chun = $('#item_chun').val();
+        var leo = $('#item_leo').val();
+        var chunpay = $('#item_chunpay').val();
+        var leopay = $('#item_leopay').val();
+        var total = chun + leo;
+
+        if (title == '') {
+          status = false;
+          alert('請寫品項喔');
+        }
+
+        var data = {
+          'title': title,
+          'chun': chun,
+          'leo': leo,
+          'chunpay': chunpay,
+          'leopay': leopay,
+          'total': total,
+        }
+        $.ajax({
+    type: "get",
+    url: "https://script.google.com/macros/s/AKfycbwFuaVTMP-q7ETVfLPNGUCKNzT1Xr6QrPzegDok2w/exec",
+    data: data,
+    dataType: "JSON",
+    success: function (response) {
+      console.log(response);
+      alert('感謝您的訂購！！');
+    },
+    error: function () {
+      alert("异常！");
+    }
+  });
+      });
+});
+
+
+function send(data) {
+  
+}
+
+  </script>
+</head>
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="title">$$$$</div>
+    <div class="add-btn" data-target="#addMoney" data-toggle="modal" >
+      <span>+</span>
+    </div>
+  </div>
+  
+<div class="content-block">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 text-center">
+      
+        <div class="form-group col-xs-12">
+          <label for="title">title</label>
+          <input type="text" class="form-control" id="item_title" name="title">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="chun">chun</label>
+          <input type="number" class="form-control" id="item_chun" name="chun">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="pwd">leo</label>
+          <input type="number" class="form-control" id="item_leo" name="leo">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="pwd">chunpay</label>
+          <input type="number" class="form-control" id="item_chunpay" name="chunpay">
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="pwd">leopay</label>
+          <input type="number" class="form-control" id="item_leopay" name="leopay">
+        </div>
+        <div class="form-group col-xs-12">
+          <input type="botton" value="確認送出" class="btn" id="sendOrder">
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+  </div>
+  <footer id="footer">
+  </footer>
+  <div id="menuBlock"></div>
+
+  <div>
+    <div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          fdsfds
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

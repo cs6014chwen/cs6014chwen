@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY1</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="day"><img src="../image/day.svg" alt=""> <span>2</span></div>
+    <div class="title">京都水族館、清水寺</div>
+  </div>
+  
+  <div id="day-1" class="content-block">
+    <div class="item" v-for="item in items">
+      <div class="time">{{item.time}}</div>
+      <div class="item-content">
+        <div class="title">{{item.title}}</div>
+        <div class="note" v-for="note in item.notes">
+          <div>{{note.note}}</div>
+        </div>
+        <div class="money" v-show="item.money"><span class="icon icon-money"></span>{{item.money}}</div>
+        <div class="link" v-for="link in item.links">
+          <a v-bind:href="link.url"><span class="icon icon-more"></span>{{link.name}}</a>
+        </div>
+      </div>
+      <div class="link-btns">
+        <a v-show="item.map" v-bind:href="item.map" class="item-btn">
+          <span class="icon-map"></span>
+        </a>
+        <div v-show="item.more" v-bind:data-target="item.more" data-toggle="modal" class="item-btn">
+          <span class="icon-star"></span>
+        </div>
+        <div v-show="item.car" v-bind:data-target="item.car" data-toggle="modal" class="item-btn">
+          <span class="icon-car"></span>
+        </div>
+        <modal></modal>
+      </div>
+    </div>
+  </div>
+  <footer id="footer">
+  </footer>
+  <div id="menuBlock"></div>
+
+  <div id="com_modal">
+    <div v-for="modal in modals" class="modal fade" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{modal.title}}</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+  <script>
+
+  var app4 = new Vue({
+    el: '#day-1',
+      data: {
+      items: [
+          {
+            time: '09:00',
+            title: '步行至',
+            notes: [
+              {note: '11:15/11:30分分別有一台直達車'}
+            ],
+            money: '130 (台幣)'
+          },
+        ]
+      }
+  });
+  var Modal = new Vue({
+    el: '#com_modal',
+    data: {
+      modals: [
+        {
+          id: 'myModal',
+          title: '走走',
+          content: ''
+        },
+        {
+          id: 'myModal2',
+          title: 'myModal2',
+        }
+      ]
+    }
+  });
+  </script>
+</html>
