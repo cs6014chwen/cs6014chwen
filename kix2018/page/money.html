@@ -19,21 +19,17 @@ $(function () {
   $('#sendOrder').click(function (e) {
     
     var chun_one = Number($('#item_money1').val());
-    var chun_onep = Number($('#item_money1p').val());
     var chun_two = Number($('#item_money2').val());
-    var chun_twop = Number($('#item_money2p').val());
     var leo_one = Number($('#item_money3').val());
-    var leo_onep = Number($('#item_money3p').val());
     var leo_two = Number($('#item_money4').val());
-    var leo_twop = Number($('#item_money4p').val());
     var together = Number($('#item_together').val());
-    var together_p = Number($('#item_together_p').val());
+    var servicefee = Number($('#item_servicefee').val());
 
     var status = true;
     var title = $('#item_title').val();
-    var together_u = together + (together*together_p);
-    var chun = chun_one + (chun_one*chun_onep) + chun_two + (chun_two*chun_twop) + (together_u/2);
-    var leo = leo_one + (leo_one*leo_onep) + leo_two + (leo_two*leo_twop) + (together_u/2);
+    var together_u = together + (together*servicefee);
+    var chun = chun_one + (chun_one*servicefee) + chun_two + (chun_two*servicefee) + (together_u/2);
+    var leo = leo_one + (leo_one*servicefee) + leo_two + (leo_two*servicefee) + (together_u/2);
     var pay = $('input[name=who_pay]:checked').val();
     var total = Number(chun) + Number(leo);
     var note = $('#item_note').val();
@@ -94,11 +90,11 @@ function send(data) {
     dataType: "JSON",
     success: function (response) {
     console.log(response);
-    alert('此單建立成功！！');
+    alert('一共花費 $' + total);
     location.reload();
     },
     error: function () {
-    alert("異常！");
+    alert("沒寫入");
     }
   });
 }
@@ -153,30 +149,29 @@ function send(data) {
             <label for="chun">chun 花費金額</label>
             <div class="money-input">
               <input type="number" class="form-control account" id="item_money1">
-              <input type="number" class="form-control money-per" id="item_money1p" placeholder="%">
             </div>
             <div class="money-input">
               <input type="number" class="form-control account" id="item_money2">
-              <input type="number" class="form-control money-per" id="item_money2p" placeholder="%">
             </div>
           </div>
           <div class="form-group col-xs-12">
             <label for="pwd">培蛋 花費金額</label>
             <div class="money-input">
               <input type="number" class="form-control account" id="item_money3">
-              <input type="number" class="form-control money-per" id="item_money3p" placeholder="%">
             </div>
             <div class="money-input">
               <input type="number" class="form-control account" id="item_money4">
-              <input type="number" class="form-control money-per" id="item_money4p" placeholder="%">
             </div>
           </div>
           <div class="form-group col-xs-12">
             <label>共同</label>
             <div class="money-input">
               <input type="number" class="form-control account" id="item_together">
-              <input type="number" class="form-control money-per"  id="item_together_p">
             </div>
+          </div>
+          <div class="form-group col-xs-12">
+            <label>服務費 (10% = 0.1)</label>
+              <input type="number" class="form-control" id="item_servicefee">
           </div>
           <div class="form-group col-xs-12">
             <div>誰付</div>
