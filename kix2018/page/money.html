@@ -59,6 +59,7 @@ $(function () {
     send(data);
 
     $('#addMoney').modal('hide');
+    alert('總花費 $' + total);
   });
 
   //得到資料
@@ -90,7 +91,7 @@ function send(data) {
     dataType: "JSON",
     success: function (response) {
     console.log(response);
-    alert('一共花費 $' + total);
+    alert('成功寫入');
     location.reload();
     },
     error: function () {
