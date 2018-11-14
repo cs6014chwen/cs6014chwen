@@ -58,6 +58,7 @@ body {
 .main-banner {
   width: 100%;
   height: 200px;
+  position: relative;
   background-color: $bg-primary;
   background-image: url(../image/title01.png);
   background-position: center bottom;
@@ -88,6 +89,23 @@ body {
     font-size: 24px;
     font-weight: 600;
     text-align: center;
+  }
+  .add-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    background-color: $color-primary;
+    border-radius: 100%;
+    padding: 3px;
+    text-align: center;
+    cursor: pointer;
+    span {
+      font-size: 30px;
+      line-height: 1;
+      color: $color-third;      
+    }
   }
 }
 .content-block {
@@ -167,6 +185,53 @@ body {
     }
   }
 }
+.money-block {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  .money-box {
+    flex: 1;
+    background-color: $color-third;
+    color: $color-secondary;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    .title {
+      font-size: 16px;
+      font-weight: 600;
+      padding: 5px;
+      border-bottom: 1px solid $color-primary; 
+    }
+    .account {
+      padding: 5px;
+    }
+    .money-owe {
+      background-color: $color-primary;
+      color: $color-third;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+  }
+}
+.add-money-modal {
+  .form-group {
+    text-align: left;
+  }
+  .form-control {
+    margin-bottom: 5px;
+  }
+}
+.money-input {
+  display: flex;
+  .account {
+    flex: 1;
+  }
+  .money-per {
+    width: 60px;
+  }
+}
+
+//footer
 .footer {
   width: 100%;
   background-color: $color-primary;

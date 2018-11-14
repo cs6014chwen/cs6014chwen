@@ -16,109 +16,193 @@
   <script>
 $(function () {
 
-      $('#sendOrder').click(function (e) {
-        var status = true;
-        var title = $('#item_title').val();
-        var chun = $('#item_chun').val();
-        var leo = $('#item_leo').val();
-        var chunpay = $('#item_chunpay').val();
-        var leopay = $('#item_leopay').val();
-        var total = chun + leo;
+  $('#sendOrder').click(function (e) {
+    
+    var chun_one = Number($('#item_money1').val());
+    var chun_onep = Number($('#item_money1p').val());
+    var chun_two = Number($('#item_money2').val());
+    var chun_twop = Number($('#item_money2p').val());
+    var leo_one = Number($('#item_money3').val());
+    var leo_onep = Number($('#item_money3p').val());
+    var leo_two = Number($('#item_money4').val());
+    var leo_twop = Number($('#item_money4p').val());
+    var together = Number($('#item_together').val());
+    var together_p = Number($('#item_together_p').val());
 
-        if (title == '') {
-          status = false;
-          alert('請寫品項喔');
-        }
+    var status = true;
+    var title = $('#item_title').val();
+    var together_u = together + (together*together_p);
+    var chun = chun_one + (chun_one*chun_onep) + chun_two + (chun_two*chun_twop) + (together_u/2);
+    var leo = leo_one + (leo_one*leo_onep) + leo_two + (leo_two*leo_twop) + (together_u/2);
+    var pay = $('input[name=who_pay]:checked').val();
+    var total = Number(chun) + Number(leo);
+    var note = $('#item_note').val();
 
-        var data = {
-          'title': title,
-          'chun': chun,
-          'leo': leo,
-          'chunpay': chunpay,
-          'leopay': leopay,
-          'total': total,
-        }
-        $.ajax({
+    if (title == '') {
+      status = false;
+      alert('請寫品項喔');
+    }
+
+    if (pay == "0") {
+      var leopay = total;
+      var chunpay = 0;
+    }
+    else {
+      var chunpay = total;
+      var leopay = 0;
+    }
+    var data = {
+      'title': title,
+      'chun': chun,
+      'leo': leo,
+      'chunpay': chunpay,
+      'leopay': leopay,
+      'total': total,
+      'note': note,
+    }
+    send(data);
+
+    $('#addMoney').modal('hide');
+  });
+
+  //得到資料
+  $.getJSON('https://spreadsheets.google.com/feeds/list/1UK8IUoMahb06NzkyZ1cXtp7yhVXobkRrjHq7VqTCjxU/od6/public/values?alt=json',
+    function (data){
+      var chunu = data.feed.entry[0].gsx$chunu.$t; 
+      var leou = data.feed.entry[0].gsx$leou.$t;
+      var chunpay = data.feed.entry[0].gsx$chunpay.$t; 
+      var leopay = data.feed.entry[0].gsx$leopay.$t;
+      var chunowe = data.feed.entry[0].gsx$chunowe.$t; 
+      var leoowe = data.feed.entry[0].gsx$leoowe.$t;
+      var itemtotal = data.feed.entry[0].gsx$itemtotal.$t;
+      $('#moneyTotal').append(itemtotal);
+      $('#chunUse').append(chunu);
+      $('#chunPay').append(chunpay);
+      $('#chunOwe').append(chunowe);
+      $('#leoUse').append(leou);
+      $('#leoPay').append(leopay);
+      $('#leoOwe').append(leoowe);
+  });
+
+});
+
+function send(data) {
+  $.ajax({
     type: "get",
     url: "https://script.google.com/macros/s/AKfycbwFuaVTMP-q7ETVfLPNGUCKNzT1Xr6QrPzegDok2w/exec",
     data: data,
     dataType: "JSON",
     success: function (response) {
-      console.log(response);
-      alert('感謝您的訂購！！');
+    console.log(response);
+    alert('此單建立成功！！');
+    location.reload();
     },
     error: function () {
-      alert("异常！");
+    alert("異常！");
     }
   });
-      });
-});
-
-
-function send(data) {
-  
 }
-
-  </script>
+</script>
 </head>
 <body class="page-body">
 
   <div class="main-banner">
-    <div class="title">$$$$</div>
+     <div class="day">全部花費</div>
+    <div class="title" id="moneyTotal"></div>
     <div class="add-btn" data-target="#addMoney" data-toggle="modal" >
       <span>+</span>
     </div>
   </div>
   
-<div class="content-block">
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12 text-center">
-      
-        <div class="form-group col-xs-12">
-          <label for="title">title</label>
-          <input type="text" class="form-control" id="item_title" name="title">
-        </div>
-        <div class="form-group col-xs-12">
-          <label for="chun">chun</label>
-          <input type="number" class="form-control" id="item_chun" name="chun">
-        </div>
-        <div class="form-group col-xs-12">
-          <label for="pwd">leo</label>
-          <input type="number" class="form-control" id="item_leo" name="leo">
-        </div>
-        <div class="form-group col-xs-12">
-          <label for="pwd">chunpay</label>
-          <input type="number" class="form-control" id="item_chunpay" name="chunpay">
-        </div>
-        <div class="form-group col-xs-12">
-          <label for="pwd">leopay</label>
-          <input type="number" class="form-control" id="item_leopay" name="leopay">
-        </div>
-        <div class="form-group col-xs-12">
-          <input type="botton" value="確認送出" class="btn" id="sendOrder">
-        </div>
-      
+  <div class="content-block">
+  <div class="money-block">
+    <div class="money-box">
+      <div class="title">CHUN</div>
+      <div class="account" id="chunUse"></div>
+      <div class="account" id="chunPay"></div>
+      <div class="money-owe" id="chunOwe"></div>
+    </div>
+    <div class="money-box">
+      <div class="title">培蛋</div>
+      <div class="account" id="leoUse"></div>
+      <div class="account" id="leoPay"></div>
+      <div class="money-owe" id="leoOwe"></div>
     </div>
   </div>
-</div>
-
-
   </div>
   <footer id="footer">
   </footer>
   <div id="menuBlock"></div>
 
-  <div>
-    <div class="modal fade" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal fade com_modal add-money-modal" id="addMoney" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          fdsfds
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">新增支出</h4>
+          </div>
+          <div class="col-lg-12 text-center">
+    
+          <div class="form-group col-xs-12">
+            <label for="title">項目</label>
+            <input type="text" class="form-control" id="item_title" name="title">
+          </div>
+          <div class="form-group col-xs-12">
+            <label for="chun">chun 花費金額</label>
+            <div class="money-input">
+              <input type="number" class="form-control account" id="item_money1">
+              <input type="number" class="form-control money-per" id="item_money1p" placeholder="%">
+            </div>
+            <div class="money-input">
+              <input type="number" class="form-control account" id="item_money2">
+              <input type="number" class="form-control money-per" id="item_money2p" placeholder="%">
+            </div>
+          </div>
+          <div class="form-group col-xs-12">
+            <label for="pwd">培蛋 花費金額</label>
+            <div class="money-input">
+              <input type="number" class="form-control account" id="item_money3">
+              <input type="number" class="form-control money-per" id="item_money3p" placeholder="%">
+            </div>
+            <div class="money-input">
+              <input type="number" class="form-control account" id="item_money4">
+              <input type="number" class="form-control money-per" id="item_money4p" placeholder="%">
+            </div>
+          </div>
+          <div class="form-group col-xs-12">
+            <label>共同</label>
+            <div class="money-input">
+              <input type="number" class="form-control account" id="item_together">
+              <input type="number" class="form-control money-per"  id="item_together_p">
+            </div>
+          </div>
+          <div class="form-group col-xs-12">
+            <div>誰付</div>
+            <div>
+              <input type="radio" id="chun_pay" name="who_pay" value="1" checked>
+              <label for="chun_pay">Chun</label>
+            </div>
+            <div>
+              <input type="radio" id="leo_pay" name="who_pay" value="0" checked>
+              <label for="leo_pay">培蛋</label>
+            </div>
+          </div>
+
+          <div class="form-group col-xs-12">
+            <label for="title">備註</label>
+            <input type="text" class="form-control" id="item_note" name="title">
+          </div>
+          <div class="form-group col-xs-12">
+            <input type="submit" value="確認送出" class="btn" id="sendOrder">
+          </div>
+      
+    </div>
           
         </div>
       </div>
     </div>
-  </div>
 
 </body>
 
