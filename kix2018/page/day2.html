@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta content="" property="og:image">
-  <title>DAY1</title>
+  <title>DAY2</title>
   <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
   <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
   <script src="../../js/jquery-3.1.1.min.js"></script>
@@ -70,20 +70,98 @@
   </div>
 
 </body>
-  <script>
-
+<script>
   var app4 = new Vue({
     el: '#day-1',
       data: {
       items: [
           {
-            time: '09:00',
-            title: '步行至',
+            time: '08:50',
+            title: '走到北浜搭車',
             notes: [
-              {note: '11:15/11:30分分別有一台直達車'}
+              {note: '記得帶車票'}
             ],
-            money: '130 (台幣)'
+            map: 'https://www.google.com.tw/maps/place/%E5%8C%97%E6%BF%B1%EF%BC%88%E5%A4%A7%E9%98%AA%EF%BC%89/@34.6899551,135.5056778,17z/data=!4m22!1m16!4m15!1m6!1m2!1s0x6000e6ddfa27566f:0x25dea66981d2c506!2z5YyX5rWc!2m2!1d135.5065989!2d34.6905957!1m6!1m2!1s0x6000e6e0c81c8315:0x561a109305acde9a!2zMiBDaG9tZS00IEvFjXJhaWJhc2hpLCBDaMWrxY0ta3UsIMWMc2FrYS1zaGksIMWMc2FrYS1mdSA1NDEtMDA0M-aXpeacrA!2m2!1d135.5049899!2d34.6899438!3e2!3m4!1s0x6000e6ddfa27566f:0x25dea66981d2c506!8m2!3d34.6905957!4d135.5065989?hl=zh-TW'
           },
+          {
+            time: '10:00',
+            title: '北浜 → 京都車站',
+            notes: [
+              {note: '換車一次'}
+            ],
+            car: '#kyoto'
+          },
+          {
+            time: '10:18',
+            title: '京都水族館',
+            notes: [
+              {note: '從「京都」站搭乘京都市公車約8分鐘，在「七条大宮･京都水族館前」站下車，或搭乘京阪京都交通約5分鐘，在「七条大宮･京都水族館前」站下車'},
+              {note: 'B3乘車處: 205・208路103・104・110・86・88路'},
+              {note: 'A3乘車處: 206路'},
+              {note: 'C5乘車處: 33・特33路'}
+            ],
+            money: '2050円',
+            map: 'https://www.google.com.tw/maps/place/%E4%BA%AC%E9%83%BD%E6%B0%B4%E6%97%8F%E9%A4%A8/@34.9873275,135.7451446,17z/data=!3m2!4b1!5s0x6001061c0bf64467:0xaa87486855c2f4d0!4m5!3m4!1s0x6001061c0b78dc5d:0x5417da24aac74659!8m2!3d34.9873275!4d135.7473333?hl=zh-TW'
+          },
+          {
+            time: '11:30',
+            title: '海豚表演',
+            notes: [
+              {note: '20分鐘的表演'}
+            ]
+          },
+          {
+            time: '13:30',
+            title: 'KONJIKI拉麵 - 梅小路公園前店',
+            links: [
+              {name: '食記',
+              url: 'https://travel98.com/article/19610'
+            }
+          ],
+          money: '1000円',
+          map: 'https://www.google.com.tw/maps/place/%E3%82%89%E3%83%BC%E3%82%81%E3%82%93+KONJIKI+%E6%A2%85%E5%B0%8F%E8%B7%AF%E5%85%AC%E5%9C%92%E5%89%8D%E5%BA%97/@34.9885291,135.7467707,17z/data=!4m8!1m2!2m1!1z5Lqs6YO95bqc5Lqs6YO95biC5LiL5Lqs5Yy65LiD5p2h5aSn5a6u5LiL44Or5LiK5LmL55S6NDE3LTHCoA!3m4!1s0x6001061c24d4785f:0x62c1b74f8b9ed222!8m2!3d34.9884701!4d135.7489708?hl=zh-TW'
+        },
+        {
+          time: '14:30',
+          title: '京都駅前坐公車，坐車前往清水寺',
+          notes: [
+            {note: '洛100 或 206號 到五条坂 ( or 清水道 ) 下車,約20min'},
+            {note: '可能要刷ICOCA'}
+          ],
+            money: '230円'
+          },
+        {
+          time: '14:50',
+          title: '前往清水寺',
+          money: '400円',
+          map: ''
+        },
+        {
+          time: '19:30',
+          title: '炸豬排一番 - 古早味豬排',
+          links: [
+            {name: '食記',
+              url: 'http://rocstw.pixnet.net/blog/post/166006356-%E2%80%8B%E2%80%8B%5B%E6%97%A5%E6%9C%AC%5D-%7B%E4%BA%AC%E9%83%BD%7D-%E7%82%B8%E8%B1%AC%E6%8E%92%E4%B8%80%E7%95%AA%28%E3%81%A8%E3%82%93%E3%81%8B%E3%81%A4%E4%B8%80%E7%95%AA%29-'
+            }
+          ],
+          money: '1000円',
+          map: 'https://www.google.com.tw/maps/place/%E7%82%B8%E8%B1%AC%E6%8E%92%E4%B8%80%E7%95%AA/@34.988212,135.7477693,17z/data=!3m1!4b1!4m5!3m4!1s0x6001061db4351657:0x87ebb3fb17835789!8m2!3d34.988212!4d135.749958!5m1!1e2?hl=zh-TW'
+        },
+        {
+          time: '20:30',
+          title: '京都駅 → 北浜',
+          car: 'beibei'
+        },
+        {
+          time: '21:42',
+          title: '北浜 → 飯店',
+          notes: [
+            { note: '〒 541-0043 大阪府大阪市中央区高麗橋2-4-10' },
+            { note: 'TEL : 06-7711-2203' },
+            { note: '中途去買隔天早餐' }
+          ],
+          map: 'https://www.google.com.tw/maps/place/2+Chome-4+K%C5%8Draibashi,+Ch%C5%AB%C5%8D-ku,+%C5%8Csaka-shi,+%C5%8Csaka-fu+541-0043%E6%97%A5%E6%9C%AC/@34.6902492,135.503275,17.25z/data=!4m5!3m4!1s0x6000e6e0c81c8315:0x561a109305acde9a!8m2!3d34.6899438!4d135.5049899?hl=zh-TW&authuser=0'
+        },
         ]
       }
   });
@@ -92,13 +170,7 @@
     data: {
       modals: [
         {
-          id: 'myModal',
-          title: '走走',
-          content: ''
-        },
-        {
-          id: 'myModal2',
-          title: 'myModal2',
+          
         }
       ]
     }

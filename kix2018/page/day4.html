@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY3</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="day"><img src="../image/day.svg" alt=""> <span>2</span></div>
+    <div class="title">大阪</div>
+  </div>
+
+  <div id="day-1" class="content-block">
+    <div class="item" v-for="item in items">
+      <div class="time">{{item.time}}</div>
+      <div class="item-content">
+        <div class="title">{{item.title}}</div>
+        <div class="note" v-for="note in item.notes">
+          <div>{{note.note}}</div>
+        </div>
+        <div class="money" v-show="item.money"><span class="icon icon-money"></span>{{item.money}}</div>
+        <div class="link" v-for="link in item.links">
+          <a v-bind:href="link.url"><span class="icon icon-more"></span>{{link.name}}</a>
+        </div>
+      </div>
+      <div class="link-btns">
+        <a v-show="item.map" v-bind:href="item.map" class="item-btn">
+          <span class="icon-map"></span>
+        </a>
+        <div v-show="item.more" v-bind:data-target="item.more" data-toggle="modal" class="item-btn">
+          <span class="icon-star"></span>
+        </div>
+        <div v-show="item.car" v-bind:data-target="item.car" data-toggle="modal" class="item-btn">
+          <span class="icon-car"></span>
+        </div>
+        <modal></modal>
+      </div>
+    </div>
+  </div>
+  <footer id="footer">
+  </footer>
+  <div id="menuBlock"></div>
+
+  <div id="com_modal">
+    <div v-for="modal in modals" class="modal fade" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{modal.title}}</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  var app4 = new Vue({
+    el: '#day-1',
+    data: {
+      items: [
+        {
+          time: '08:50',
+          title: '先換宿寄放行李',
+          notes: [
+            {note: 'ホテルｗｂｆ北船場ｗｅｓｔ'},
+            {note: '541-0047 大阪市中央区淡路町３－２－７'}
+          ],
+          map: 'https://www.google.com/maps/place/3+Chome-2-7+Awajimachi,+Ch%C5%AB%C5%8D-ku,+%C5%8Csaka-shi,+%C5%8Csaka-fu+541-0047%E6%97%A5%E6%9C%AC/@34.6863436,135.5015118,16.75z/data=!4m5!3m4!1s0x6000e6e1a31a9fb3:0xf8eafcae6330e880!8m2!3d34.6867885!4d135.5029791'
+        },
+        {
+          time: '09:20',
+          title: '堺筋本町Sakaisuji-hommachi  → 大阪ビジネスパーク駅',
+          notes: [
+            {note: '記得帶車票'}
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E5%A0%BA%E7%AD%8B%E6%9C%AC%E7%94%BA/@34.6818255,135.5050819,17z/data=!3m1!4b1!4m5!3m4!1s0x6000e721e2ce27fd:0xc5ca277fad75feb9!8m2!3d34.6818255!4d135.5069763?hl=zh-TW&authuser=0',
+          car: '#hommachi'
+        },
+        {
+          time: '09:33',
+          title: '大阪城',
+          map: 'https://www.google.com/maps/place/%E5%A4%A7%E9%98%AA%E5%9F%8E/@34.6893933,135.5276945,16.54z/data=!4m5!3m4!1s0x6000e0cd5c283afd:0xf01d07d5ca11e41!8m2!3d34.6873331!4d135.5259557'
+        },
+        {
+          time: '11:00',
+          title: '大阪ビジネスパーク駅Osaka Business Park → 日本橋',
+          car: '#Osak'
+        },
+        {
+          time: '11:30',
+          title: '天婦羅 えびのや - 明太子吃到飽',
+          links: [
+            {name: '食記',
+             url: 'https://boo2k.com/archives/55345',
+            },
+          ],
+          money: '1000円',
+          map: 'https://www.google.com/maps/place/%E5%A4%A9%E5%A9%A6%E7%BE%85+%E3%81%88%E3%81%B3%E3%81%AE%E3%82%84/@34.6661808,135.5040655,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x9980b54bd93b8bdd!8m2!3d34.6661808!4d135.5062542'
+        },
+      ]
+    }
+  });
+  var Modal = new Vue({
+    el: '#com_modal',
+    data: {
+      modals: [{
+
+      }]
+    }
+  });
+</script>
+
+</html>
