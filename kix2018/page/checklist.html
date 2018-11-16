@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY1</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="day"><img src="../image/day.svg" alt=""> <span>1</span></div>
+    <div class="title">行前準備</div>
+  </div>
+
+  <div id="checklist" class="content-block">
+    <div class="list-block">
+      <div class="title">隨身行李</div>
+      <div class="list-box" v-for="bag in bags">
+        <div class="item-box">
+          <input type="checkbox" v-bind:name="bag.id" v-bind:id="bag.id" v-bind:value="bag.id" class="list-item-input">
+          <label v-bind:for="bag.id" class="list-item">
+            {{bag.name}}
+          </label>
+        </div>
+      </div>
+      <div class="title">行李箱</div>
+      <div class="list-box" v-for="trunk in trunks">
+        <div class="item-box">
+          <input type="checkbox" v-bind:name="trunk.id" v-bind:id="trunk.id" v-bind:value="trunk.id" class="list-item-input">
+          <label v-bind:for="trunk.id" class="list-item">
+            {{trunk.name}}
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer id="footer" class="footer">
+    <div class="menu" data-target="#menuModal" data-toggle="modal">
+      <i class="icon-menu"></i>
+    </div>
+    <div class="menu-direction" id="directionUrl">
+    </div>
+  </footer>
+  <div id="menuBlock"></div>
+
+</body>
+<script>
+  var app = new Vue({
+    el: '#checklist',
+    data: {
+      bags: [
+        {id: 'money', name: '台幣、日幣、魔法卡'},
+        {id: 'passport', name: '護照'},
+        {id: 'carry_ on', name: '隨身小用品'},
+        {id: 'icoca', name: 'ICOCA'},
+        { id: 'ticket', name: '各種票券領取單'},
+        { id: 'camera', name: '相機、相機清潔包、充電器、電池'},
+        { id: 'power', name: '行動電源'},
+        { id: 'clothes', name: '帽子、外套、圍巾'},
+        { id: 'medicine', name: '暈車藥、止痛藥、OK蹦'},
+        { id: 'stationery', name: '簡單文具'},
+      ],
+      trunks: [
+        {id: 'changeClothes', name: '7日換洗衣物、袋子'},
+        {id: 'cosmetic', name: '化妝品、卸妝、洗臉'},
+        {id: 'hair', name: '梳子、護髮'},
+        {id: 'umbrella', name: '摺疊傘'},
+        {id: 'towel', name: '隨身面紙、手帕'},
+        {id: 'eyes', name: '隱形眼鏡、眼鏡'},
+      ]
+    }
+  });
+</script>
+
+</html>

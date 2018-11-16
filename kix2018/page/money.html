@@ -148,55 +148,57 @@ function send(data) {
           <div class="col-lg-12 text-center">
     
           <div class="form-group col-xs-12">
-            <label for="title">項目</label>
-            <input type="text" class="form-control" id="item_title" name="title">
-          </div>
-          <div class="form-group col-xs-12">
-            <label for="chun">chun 花費金額</label>
+            <label for="title" class="title">項目</label>
             <div class="money-input">
-              <input type="number" class="form-control account" id="item_money1">
-            </div>
-            <div class="money-input">
-              <input type="number" class="form-control account" id="item_money2">
+              <input type="text" class="form-control" id="item_title" name="title">
             </div>
           </div>
           <div class="form-group col-xs-12">
-            <label for="pwd">培蛋 花費金額</label>
+            <label for="chun" class="title">chun</label>
             <div class="money-input">
-              <input type="number" class="form-control account" id="item_money3">
-            </div>
-            <div class="money-input">
-              <input type="number" class="form-control account" id="item_money4">
+              <input type="number" class="form-control account" id="item_money1" placeholder="第一筆花費金額">
+              <input type="number" class="form-control account" id="item_money2" placeholder="第二筆花費金額">
             </div>
           </div>
           <div class="form-group col-xs-12">
-            <label>共同</label>
+            <label for="pwd" class="title">培蛋</label>
+            <div class="money-input">
+              <input type="number" class="form-control account" id="item_money3" placeholder="第一筆花費">
+              <input type="number" class="form-control account" id="item_money4" placeholder="第二筆花費">
+            </div>
+          </div>
+          <div class="form-group col-xs-12">
+            <label class="title">共同</label>
             <div class="money-input">
               <input type="number" class="form-control account" id="item_together">
             </div>
           </div>
           <div class="form-group col-xs-12">
-            <label>服務費 (10% = 0.1)</label>
+            <label class="title">服務費<span class="note">(10% = 0.1)</span></label>
+            <div class="money-input">
               <input type="number" class="form-control" id="item_servicefee">
+            </div>
           </div>
           <div class="form-group col-xs-12">
-            <div>誰付</div>
-            <div>
-              <input type="radio" id="chun_pay" name="who_pay" value="1" checked>
+            <div class="title">誰付</div>
+            <div class="who-pay">
+              <input type="radio" class="pay_name" id="chun_pay" name="who_pay" value="1" checked>
               <label for="chun_pay">Chun</label>
             </div>
-            <div>
-              <input type="radio" id="leo_pay" name="who_pay" value="0" checked>
+            <div class="who-pay leo_pay">
+              <input type="radio"  class="pay_name" id="leo_pay" name="who_pay" value="0">
               <label for="leo_pay">培蛋</label>
             </div>
           </div>
 
           <div class="form-group col-xs-12">
-            <label for="title">備註</label>
-            <input type="text" class="form-control" id="item_note" name="title">
+            <label for="title" class="title">備註</label>
+            <div class="money-input">
+              <input type="text" class="form-control" id="item_note" name="title">
+            </div>
           </div>
           <div class="form-group col-xs-12">
-            <input type="submit" value="確認送出" class="btn" id="sendOrder">
+            <input type="submit" value="確認送出" class="btn btn-submit" id="sendOrder">
           </div>
       
     </div>
