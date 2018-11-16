@@ -6,6 +6,9 @@ body {
   font-family: 'Helvetica Neue', sans-serif, 'Microsoft JhengHei';
   background-color: $color-secondary;
 }
+a {
+  text-decoration: none;
+}
 
 .btn-primary {
   background-color: $color-primary;
@@ -280,6 +283,17 @@ body {
       border-radius: 5px;
       overflow: hidden;
       text-align: center;
+    }
+    .menu-item.full {
+      background-color: $color-primary;
+      color: $color-third;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-money {
+      font-size: 50px;
     }
     .month {
       background-color: $color-primary;

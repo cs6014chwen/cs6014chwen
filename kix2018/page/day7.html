@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY4</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="day"><img src="../image/day.svg" alt=""> <span>7</span></div>
+    <div class="title">回台北囉QQ</div>
+  </div>
+
+  <div id="day-1" class="content-block">
+    <div class="item" v-for="item in items">
+      <div class="time">{{item.time}}</div>
+      <div class="item-content">
+        <div class="title">{{item.title}}</div>
+        <div class="note" v-for="note in item.notes">
+          <div>{{note.note}}</div>
+        </div>
+        <div class="money" v-show="item.money"><span class="icon icon-money"></span>{{item.money}}</div>
+        <div class="link" v-for="link in item.links">
+          <a v-bind:href="link.url"><span class="icon icon-more"></span>{{link.name}}</a>
+        </div>
+      </div>
+      <div class="link-btns">
+        <a v-show="item.map" v-bind:href="item.map" class="item-btn">
+          <span class="icon-map"></span>
+        </a>
+        <div v-show="item.more" v-bind:data-target="item.more" data-toggle="modal" class="item-btn">
+          <span class="icon-star"></span>
+        </div>
+        <div v-show="item.car" v-bind:data-target="item.car" data-toggle="modal" class="item-btn">
+          <span class="icon-car"></span>
+        </div>
+        <modal></modal>
+      </div>
+    </div>
+  </div>
+  <footer id="footer" class="footer">
+    <div class="menu" data-target="#menuModal" data-toggle="modal">
+      <i class="icon-menu"></i>
+    </div>
+    <div class="menu-direction" id="directionUrl">
+    </div>
+  </footer>
+  <div id="menuBlock"></div>
+
+  <div id="com_modal">
+    <div v-for="modal in modals" class="modal fade com_modal" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{modal.title}}</h4>
+          </div>
+          <div class="modal-body">
+            <ul v-for="list in modal.lists">
+              <li>{{list.list}}</li>
+            </ul>
+            <div class="modal-img" v-for="img in modal.imgs">
+              <img :src="img.img">
+              <p>{{img.text}}</p> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  var app4 = new Vue({
+    el: '#day-1',
+    data: {
+      items: [
+        {
+          time: '07:45',
+          title: '到淀屋橋',
+          notes: [
+            {note: '行李要整理好，退房'}
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E6%B7%80%E5%B1%8B%E6%A9%8B/@34.6919172,135.5019904,18z/data=!4m8!1m2!2m1!1z5reA5bGL5qmL!3m4!1s0x6000e6e66c48ad31:0x8d7cc7b1e83b0c46!8m2!3d34.6922612!4d135.5010527'
+        },
+        {
+          time: '08:00',
+          title: '淀屋橋 → 天王寺 tennoji',
+          notes: [
+            {note: 'ICOCA'}
+          ],
+          money: '230円',
+         car: '#tennoji'
+        },
+        {
+          time: '08:32',
+          title: '天王寺 tennoji → 關西機場',
+          notes: [
+            {note: 'Haruka的票券記得帶好'},
+            {note: '坐在5,6車廂'}
+          ],
+          links: [
+            {
+              name: '到機場的HARUKA',
+              url: 'http://time.jr-odekake.net/cgi-bin/mydia.cgi?MODE=11&FUNC=0&EKI=Tennoji&SENK=&DIR=&DDIV=&CDAY=&DITD=&DATE=20181124&COMPANY_CODE=401&COUNTRY_CODE=en&INBOUND_CODE=6&yearmonth=201811&day=24&x=24&y=14'
+            }
+          ],
+        },
+        {
+          time: '09:15',
+          title: '關西機場 → 虎航櫃報到',
+          notes: [
+            {note: '2小時半前九可以報到'}
+          ],
+        },
+        {
+          time: '11:15',
+          title: '最晚上飛機時間',
+        },
+        {
+          time: '11:30',
+          title: '飛機起飛',
+        },
+        {
+          time: '13:50',
+          title: '到台灣',
+        },
+      ]
+    }
+  });
+  var Modal = new Vue({
+    el: '#com_modal',
+    data: {
+      modals: [
+        {
+          id: 'tennoji',
+          title: '淀屋橋 → 天王寺',
+          imgs: [
+            { img: '../image/car/tennoji.jpg' }
+          ]
+        },
+      ]
+    }
+  });
+</script>
+
+</html>

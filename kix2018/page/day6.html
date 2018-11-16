@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY4</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="day"><img src="../image/day.svg" alt=""> <span>6</span></div>
+    <div class="title">宇治</div>
+  </div>
+
+  <div id="day-1" class="content-block">
+    <div class="item" v-for="item in items">
+      <div class="time">{{item.time}}</div>
+      <div class="item-content">
+        <div class="title">{{item.title}}</div>
+        <div class="note" v-for="note in item.notes">
+          <div>{{note.note}}</div>
+        </div>
+        <div class="money" v-show="item.money"><span class="icon icon-money"></span>{{item.money}}</div>
+        <div class="link" v-for="link in item.links">
+          <a v-bind:href="link.url"><span class="icon icon-more"></span>{{link.name}}</a>
+        </div>
+      </div>
+      <div class="link-btns">
+        <a v-show="item.map" v-bind:href="item.map" class="item-btn">
+          <span class="icon-map"></span>
+        </a>
+        <div v-show="item.more" v-bind:data-target="item.more" data-toggle="modal" class="item-btn">
+          <span class="icon-star"></span>
+        </div>
+        <div v-show="item.car" v-bind:data-target="item.car" data-toggle="modal" class="item-btn">
+          <span class="icon-car"></span>
+        </div>
+        <modal></modal>
+      </div>
+    </div>
+  </div>
+  <footer id="footer" class="footer">
+    <div class="menu" data-target="#menuModal" data-toggle="modal">
+      <i class="icon-menu"></i>
+    </div>
+    <div class="menu-direction" id="directionUrl">
+    </div>
+  </footer>
+  <div id="menuBlock"></div>
+
+  <div id="com_modal">
+    <div v-for="modal in modals" class="modal fade com_modal" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{modal.title}}</h4>
+          </div>
+          <div class="modal-body">
+            <ul v-for="list in modal.lists">
+              <li>{{list.list}}</li>
+            </ul>
+            <div class="modal-img" v-for="img in modal.imgs">
+              <img :src="img.img">
+              <p>{{img.text}}</p> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  var app4 = new Vue({
+    el: '#day-1',
+    data: {
+      items: [
+        {
+          time: '08:50',
+          title: '北浜',
+          notes: [
+            {note: '早餐別吃太多啊!'},
+            {note: '請用三日券喔喔喔'}
+          ],
+          map: 'https://www.google.com/maps/place/3+Chome-2-7+Awajimachi,+Ch%C5%AB%C5%8D-ku,+%C5%8Csaka-shi,+%C5%8Csaka-fu+541-0047%E6%97%A5%E6%9C%AC/@34.6863436,135.5015118,16.75z/data=!4m5!3m4!1s0x6000e6e1a31a9fb3:0xf8eafcae6330e880!8m2!3d34.6867885!4d135.5029791'
+        },
+        {
+          time: '09:00',
+          title: '北浜 → 宇治',
+          notes: [
+            {note: '請用三日券喔喔喔'}
+          ],
+          car: '#uji'
+        },
+        {
+          time: '10:06',
+          title: '宇治 → 中村藤吉本店',
+          notes: [
+            {note: '可能會排隊一小時'}
+          ],
+          links: [
+            {
+              name: '遊記',
+              url: 'https://orange-dog.com/tokichi1/'
+            }
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E4%B8%AD%E6%9D%91%E8%97%A4%E5%90%89+%E6%9C%AC%E5%BA%97/@34.889947,135.7957202,16z/data=!4m8!1m2!2m1!1z5Lit5p2R6Jek5ZCJ5pys5bqX!3m4!1s0x0:0x72edd51680741747!8m2!3d34.8894259!4d135.801723'
+        },
+        {
+          time: '12:30',
+          title: '平等院',
+          notes: [
+            {note: '培蛋要蓋朱印'}
+          ],
+          links: [
+            {
+              name: '蓋朱印',
+              url: 'https://www.byodoin.or.jp/ch2/guide/goshuin/'
+            }
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E5%B9%B3%E7%AD%89%E9%99%A2/@34.8892908,135.8076783,15z/data=!4m5!3m4!1s0x0:0x608414938ffa07a4!8m2!3d34.8892908!4d135.8076783'
+        },
+        {
+          time: '14:30',
+          title: '宇治',
+          notes: [
+            {note: '培蛋要拿出魔法卡去大阪,刷好刷滿'}
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E5%AE%87%E6%B2%BB%EF%BC%88%E4%BA%AC%E9%98%AA%EF%BC%89/@34.8948881,135.8065816,17.25z/data=!4m12!1m6!3m5!1s0x0:0x608414938ffa07a4!2z5bmz562J6Zmi!8m2!3d34.8892908!4d135.8076783!3m4!1s0x6001110a7ca95d91:0x12f3caba13bb27e!8m2!3d34.8942258!4d135.8065751'
+        },
+        {
+          time: '15:00',
+          title: '宇治 → 日本橋',
+          notes: [
+            {note: '培蛋要給CHUN魔法卡,刷好刷滿'}
+          ],
+          car: '#day6-back'
+        },
+        {
+          time: '16:15',
+          title: '開始逛逛逛逛逛',
+          notes: [
+            {note: '隨意吧'}
+          ]
+        },
+        {
+          time: '21:00',
+          title: '北船場west',
+          notes: [
+            {note: '541-0047 大阪市中央区淡路町３－２－７'}
+          ],
+          map: 'https://www.google.com/maps/place/3+Chome-2-7+Awajimachi,+Ch%C5%AB%C5%8D-ku,+%C5%8Csaka-shi,+%C5%8Csaka-fu+541-0047%E6%97%A5%E6%9C%AC/@34.6863436,135.5015118,16.75z/data=!4m5!3m4!1s0x6000e6e1a31a9fb3:0xf8eafcae6330e880!8m2!3d34.6867885!4d135.5029791'
+        }
+      ]
+    }
+  });
+  var Modal = new Vue({
+    el: '#com_modal',
+    data: {
+      modals: [
+        {
+          id: 'uji',
+          title: '北浜 → 宇治',
+          imgs: [
+            { img: '../image/car/uji.jpg' }
+          ]
+        },
+        {
+          id: 'day6-back',
+          title: '宇治 → 日本橋',
+          imgs: [
+            { img: '../image/car/day6-back.jpg' }
+          ]
+        },
+      ]
+    }
+  });
+</script>
+
+</html>

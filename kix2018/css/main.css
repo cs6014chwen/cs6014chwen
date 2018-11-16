@@ -71,6 +71,9 @@ body {
   font-family: 'Helvetica Neue', sans-serif, 'Microsoft JhengHei';
   background-color: #161028; }
 
+a {
+  text-decoration: none; }
+
 .btn-primary {
   background-color: #aa0049;
   border: 0; }
@@ -329,6 +332,21 @@ body {
     border-radius: 5px;
     overflow: hidden;
     text-align: center; }
+  .menumodal .menu-content .menu-item.full {
+    background-color: #aa0049;
+    color: #fee9cc;
+    font-size: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; }
+  .menumodal .menu-content .icon-money {
+    font-size: 50px; }
   .menumodal .menu-content .month {
     background-color: #aa0049;
     color: #fee9cc;

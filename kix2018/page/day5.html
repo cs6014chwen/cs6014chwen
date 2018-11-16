@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta content="" property="og:image">
+  <title>DAY4</title>
+  <link rel="stylesheet" type="text/css" media="screen" href="../../bootstrap/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="../css/main.css" />
+  <script src="../../js/jquery-3.1.1.min.js"></script>
+  <script src="../../bootstrap/bootstrap.min.js"></script>
+  <script src="../js/vue.js"></script>
+  <script src="../js/main.js"></script>
+</head>
+
+<body class="page-body">
+
+  <div class="main-banner">
+    <div class="day"><img src="../image/day.svg" alt=""> <span>5</span></div>
+    <div class="title">琵琶湖</div>
+  </div>
+
+  <div id="day-1" class="content-block">
+    <div class="item" v-for="item in items">
+      <div class="time">{{item.time}}</div>
+      <div class="item-content">
+        <div class="title">{{item.title}}</div>
+        <div class="note" v-for="note in item.notes">
+          <div>{{note.note}}</div>
+        </div>
+        <div class="money" v-show="item.money"><span class="icon icon-money"></span>{{item.money}}</div>
+        <div class="link" v-for="link in item.links">
+          <a v-bind:href="link.url"><span class="icon icon-more"></span>{{link.name}}</a>
+        </div>
+      </div>
+      <div class="link-btns">
+        <a v-show="item.map" v-bind:href="item.map" class="item-btn">
+          <span class="icon-map"></span>
+        </a>
+        <div v-show="item.more" v-bind:data-target="item.more" data-toggle="modal" class="item-btn">
+          <span class="icon-star"></span>
+        </div>
+        <div v-show="item.car" v-bind:data-target="item.car" data-toggle="modal" class="item-btn">
+          <span class="icon-car"></span>
+        </div>
+        <modal></modal>
+      </div>
+    </div>
+  </div>
+  <footer id="footer" class="footer">
+    <div class="menu" data-target="#menuModal" data-toggle="modal">
+      <i class="icon-menu"></i>
+    </div>
+    <div class="menu-direction" id="directionUrl">
+    </div>
+  </footer>
+  <div id="menuBlock"></div>
+
+  <div id="com_modal">
+    <div v-for="modal in modals" class="modal fade com_modal" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{modal.title}}</h4>
+          </div>
+          <div class="modal-body">
+            <ul v-for="list in modal.lists">
+              <li>{{list.list}}</li>
+            </ul>
+            <div class="modal-img" v-for="img in modal.imgs">
+              <img :src="img.img">
+              <p>{{img.text}}</p> 
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<script>
+  var app4 = new Vue({
+    el: '#day-1',
+    data: {
+      items: [
+        {
+          time: '08:50',
+          title: '走到北浜',
+          map: 'https://www.google.com/maps/place/3+Chome-2-7+Awajimachi,+Ch%C5%AB%C5%8D-ku,+%C5%8Csaka-shi,+%C5%8Csaka-fu+541-0047%E6%97%A5%E6%9C%AC/@34.6863436,135.5015118,16.75z/data=!4m5!3m4!1s0x6000e6e1a31a9fb3:0xf8eafcae6330e880!8m2!3d34.6867885!4d135.5029791'
+        },
+        {
+          time: '09:00',
+          title: '北浜 → 京橋',
+          notes:[
+            {note: '刷ICOCA'}
+          ],
+          money: '150円',
+          car: '#kyobashi'
+        },
+        {
+          time: '09:15',
+          title: '搭JR京橋 → 大阪 → 京都 → 近江高島Omi Takashima',
+          notes:[
+            {note: '使用JR PASS'}
+          ],
+          car: '#takashima'
+        },
+        {
+          time: '11:01',
+          title: '走到白髭神社',
+          notes:[
+            {note: '我們用走的QAQ'}
+          ],
+          map: 'https://www.google.com/maps/place/%E7%99%BD%E9%AC%9A%E7%A5%9E%E7%A4%BE/@35.2745668,136.0073908,16.25z/data=!4m5!3m4!1s0x0:0xefe8039a81ac0194!8m2!3d35.2744595!4d136.0111055'
+        },
+        {
+          time: '12:10',
+          title: '走到JR近江高島',
+          notes:[
+            {note: '我們用走的QAQ'}
+          ],
+          map: 'https://www.google.com/maps/place/%E8%BF%91%E6%B1%9F%E9%AB%98%E5%B3%B6/@35.2859872,136.0081723,14z/data=!4m5!3m4!1s0x60019a67b293463f:0xaca8a60c3755810!8m2!3d35.292688!4d136.010133'
+        },
+        {
+          time: '12:38',
+          title: 'JR近江高島 → 近江八幡Omihachiman',
+          notes:[
+            {note: '繞半圈~'}
+          ],
+          car: '#hachiman'
+        },
+        {
+          time: '14:04',
+          title: '搭近江鐵道公車(6號，往長命寺方向)',
+          notes:[
+            {note: '約10分鐘左右的車程就會到達新町站，下車走一下就會到八幡堀了！'}
+          ],
+          links: [
+            {
+              name: '遊記',
+              url: 'https://blog.xuite.net/jellytaliya/blog/580537964-%E3%80%90%E6%97%A5%E6%9C%AC%C2%B7%E6%BB%8B%E8%B3%80%C2%B7%E8%BF%91%E6%B1%9F%E5%85%AB%E5%B9%A1%E3%80%91%E5%88%B0%E7%90%B5%E7%90%B6%E6%B9%96%E7%95%94%E7%9A%84%E6%97%A5%E6%9C%AC%E5%A8%81%E5%B0%BC%E6%96%AF%E5%9D%90%E5%B1%8B%E5%BD%A2%E8%88%B9%E3%80%81%E6%95%A3%E6%AD%A5%EF%BC%8C%E5%90%83%E7%BE%8E%E5%91%B3%E8%BF%91%E6%B1%9F%E7%89%9B%E5%8F%AF%E6%A8%82%E9%A4%85'
+            }
+          ]
+        },
+        {
+          time: '14:20',
+          title: '八幡堀',
+          notes:[
+            {note: '日牟禮八幡宮'}
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E6%97%A5%E7%89%9F%E7%A6%AE%E5%85%AB%E5%B9%A1%E5%AE%AE/@35.1408256,136.0868328,17z/data=!4m5!3m4!1s0x6001799b618b7c17:0xfe4b586ca4f865e2!8m2!3d35.141045!4d136.089633'
+        },
+        {
+          time: '14:30',
+          title: '八幡堀遊船',
+          notes:[
+            {note: '遊船'}
+          ],
+          map: 'https://www.google.com.tw/maps/place/%E5%85%AB%E5%B9%A1%E5%A0%80%E9%81%8A%E8%88%B9/@35.1401456,136.089126,17.92z/data=!4m22!1m16!4m15!1m6!1m2!1s0x0:0xfe4b586ca4f865e2!2z5pel54mf56au5YWr5bmh5a6u!2m2!1d136.089633!2d35.141045!1m6!1m2!1s0x60017982d2545b51:0x5b481604f1f064ba!2z5pel5pys44CSNTIzLTA4MjQgU2hpZ2Eta2VuLCDFjG1paGFjaGltYW4tc2hpLCBEYWlrdWNobywgMjflhavluaHloIDpgYroiLk!2m2!1d136.0914542!2d35.1402661!3e2!3m4!1s0x60017982d2545b51:0x5b481604f1f064ba!8m2!3d35.1402661!4d136.0914542'
+        },
+        {
+          time: '19:29',
+          title: '新町',
+          notes:[
+            {note: '搭車車道近江八幡'}
+          ],
+          more: '#shimmachi',
+        },
+        {
+          time: '20:00',
+          title: '搭JR近江八幡 → 京橋',
+          notes:[
+            {note: '搭車車住宿點'}
+          ],
+          car: '#backhotal',
+        },
+        {
+          time: '21:30',
+          title: '京橋 → 北浜',
+          notes:[
+            {note: '搭車車住宿點'}
+          ],
+          car: '#day5-back',
+        },
+        {
+          time: '21:40',
+          title: '北船場west',
+          notes: [
+            {note: '541-0047 大阪市中央区淡路町３－２－７'}
+          ],
+          map: 'https://www.google.com/maps/place/3+Chome-2-7+Awajimachi,+Ch%C5%AB%C5%8D-ku,+%C5%8Csaka-shi,+%C5%8Csaka-fu+541-0047%E6%97%A5%E6%9C%AC/@34.6863436,135.5015118,16.75z/data=!4m5!3m4!1s0x6000e6e1a31a9fb3:0xf8eafcae6330e880!8m2!3d34.6867885!4d135.5029791'
+        },
+      ]
+    }
+  });
+  var Modal = new Vue({
+    el: '#com_modal',
+    data: {
+      modals: [
+        {
+          id: 'kyobashi',
+          title: '北浜 → 京橋',
+          imgs: [
+            { img: '../image/car/kyobashi.jpg' }
+          ]
+        },
+        {
+          id: 'takashima',
+          title: '京橋 → 近江高島',
+          imgs: [
+            { img: '../image/car/takashima.jpg' }
+          ]
+        },
+        {
+          id: 'hachiman',
+          title: 'JR近江高島 → 近江八幡Omihachiman',
+          imgs: [
+            { img: '../image/car/hachiman.jpg' }
+          ]
+        },
+        {
+          id: 'shimmachi',
+          title: '回程公車時刻參考',
+          imgs: [
+            { img: '../image/car/shimmachi.jpg' }
+          ]
+        },
+        {
+          id: 'backhotal',
+          title: '近江八幡 → 京橋',
+          imgs: [
+            { img: '../image/car/backhotal.jpg' }
+          ]
+        },
+        {
+          id: 'day5-back',
+          title: '京橋 → 北浜',
+          imgs: [
+            { img: '../image/car/day5-back.jpg' }
+          ]
+        },
+      ]
+    }
+  });
+</script>
+
+</html>
