@@ -204,7 +204,8 @@ body {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       background-color: #fff5e7;
-      margin-bottom: 5px; }
+      margin-bottom: 5px;
+      border-radius: 3px; }
     .content-block .item-content .link a {
       color: #aa0049;
       font-size: 14px;
@@ -225,15 +226,18 @@ body {
         vertical-align: sub;
         margin-right: 5px; }
   .content-block .link-btns {
-    display: block; }
+    display: block;
+    margin-left: 5px; }
     .content-block .link-btns .item-btn {
       display: block;
       width: 100%;
       text-align: center;
       color: #fee9cc;
-      font-size: 20px;
+      font-size: 19px;
       padding: 1px 5px;
-      background-color: #aa0049; }
+      background-color: #aa0049;
+      border-radius: 3px;
+      margin-bottom: 3px; }
       .content-block .link-btns .item-btn .icon {
         margin: 0 auto;
         color: #fee9cc; }
@@ -289,11 +293,23 @@ body {
   background-color: #aa0049;
   position: fixed;
   bottom: 0;
-  left: 0; }
+  left: 0;
+  display: block;
+  overflow: hidden; }
   .footer .menu {
     padding: 0 10px;
     font-size: 28px;
-    color: #f0ae9f; }
+    color: #f0ae9f;
+    display: inline-block;
+    float: left; }
+  .footer .menu-direction {
+    float: right;
+    display: inline-block;
+    font-size: 24px; }
+    .footer .menu-direction a {
+      color: #f0ae9f;
+      line-height: 42px;
+      padding: 0 10px; }
 
 .menumodal .modal-content {
   background: none;

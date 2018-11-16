@@ -47,12 +47,17 @@
       </div>
     </div>
   </div>
-  <footer id="footer">
+  <footer id="footer" class="footer">
+    <div class="menu" data-target="#menuModal" data-toggle="modal">
+      <i class="icon-menu"></i>
+    </div>
+    <div class="menu-direction" id="directionUrl">
+    </div>
   </footer>
   <div id="menuBlock"></div>
 
   <div id="com_modal">
-    <div v-for="modal in modals" class="modal fade" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div v-for="modal in modals" class="modal fade com_modal" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -62,7 +67,13 @@
             <h4 class="modal-title">{{modal.title}}</h4>
           </div>
           <div class="modal-body">
-            ...
+            <ul v-for="list in modal.lists">
+              <li>{{list.list}}</li>
+            </ul>
+            <div class="modal-img" v-for="img in modal.imgs">
+              <img :src="img.img">
+              <p>{{img.text}}</p> 
+            </div>
           </div>
         </div>
       </div>
@@ -149,8 +160,8 @@
         },
         {
           time: '20:30',
-          title: '京都駅 → 北浜',
-          car: 'beibei'
+          title: '京都駅 → 北浜 Kitahama',
+          car: '#Kitahama'
         },
         {
           time: '21:42',
@@ -170,7 +181,18 @@
     data: {
       modals: [
         {
-          
+          id: 'kyoto',
+          title: '北浜 → 京都',
+          imgs: [
+            { img: '../image/car/kyoto.jpg' }
+          ]
+        },
+        {
+          id: 'Kitahama',
+          title: '京都 → 北浜',
+          imgs: [
+            { img: '../image/car/Kitahama.jpg' }
+          ]
         }
       ]
     }

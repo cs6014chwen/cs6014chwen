@@ -18,7 +18,7 @@
 <body class="page-body">
 
   <div class="main-banner">
-    <div class="day"><img src="../image/day.svg" alt=""> <span>2</span></div>
+    <div class="day"><img src="../image/day.svg" alt=""> <span>3</span></div>
     <div class="title">嵐山</div>
   </div>
 
@@ -49,12 +49,17 @@
       </div>
     </div>
   </div>
-  <footer id="footer">
+  <footer id="footer" class="footer">
+    <div class="menu" data-target="#menuModal" data-toggle="modal">
+      <i class="icon-menu"></i>
+    </div>
+    <div class="menu-direction" id="directionUrl">
+    </div>
   </footer>
   <div id="menuBlock"></div>
 
   <div id="com_modal">
-    <div v-for="modal in modals" class="modal fade" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div v-for="modal in modals" class="modal fade com_modal" v-bind:id="modal.id" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -64,7 +69,13 @@
             <h4 class="modal-title">{{modal.title}}</h4>
           </div>
           <div class="modal-body">
-            ...
+            <ul v-for="list in modal.lists">
+              <li>{{list.list}}</li>
+            </ul>
+            <div class="modal-img" v-for="img in modal.imgs">
+              <img :src="img.img">
+              <p>{{img.text}}</p> 
+            </div>
           </div>
         </div>
       </div>
@@ -193,7 +204,7 @@
         },
         {
           time: '21:00',
-          title: '日本橋Nihombashi → 北浜',
+          title: '日本橋 Nihombashi → 北浜 Kitahama',
           notes: [
            
           ],
@@ -213,9 +224,36 @@
   var Modal = new Vue({
     el: '#com_modal',
     data: {
-      modals: [{
-
-      }]
+      modals: [
+        {
+          id: 'arashiyama',
+          title: '北浜 → 嵐山阪急線',
+          imgs: [
+            { img: '../image/car/arashiyama.jpg' }
+          ]
+        },
+        {
+          id: 'Nihombashi',
+          title: '日本橋 → 北浜',
+          imgs: [
+            { img: '../image/car/Nihombashi.jpg' }
+          ]
+        },
+        {
+          id: 'Karasuma',
+          title: '嵐電嵯峨 → 烏丸',
+          imgs: [
+            { img: '../image/car/Karasuma.jpg' }
+          ]
+        },
+        {
+          id: 'omiya',
+          title: '大宮 → 日本橋',
+          imgs: [
+            { img: '../image/car/omiya.jpg' }
+          ]
+        }
+      ]
     }
   });
 </script>

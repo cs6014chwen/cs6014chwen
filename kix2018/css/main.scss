@@ -137,6 +137,7 @@ body {
       box-sizing: border-box;
       background-color: #fff5e7;
       margin-bottom: 5px;
+      border-radius: 3px;
     }
     .link {
       a {
@@ -168,15 +169,19 @@ body {
   }
   .link-btns {
     display: block;
+    margin-left: 5px;
     
     .item-btn {
       display: block;
       width: 100%;
       text-align: center;
       color: $color-third;
-      font-size: 20px;
+      font-size: 19px;
       padding: 1px 5px;
       background-color: $color-primary;
+      border-radius: 3px;
+      margin-bottom: 3px;
+      
 
       .icon {
         margin: 0 auto;
@@ -238,10 +243,25 @@ body {
   position: fixed;
   bottom: 0;
   left: 0;
+  display: block;
+  overflow: hidden;
   .menu {
     padding: 0 10px;
     font-size: 28px;
     color: $color-four;
+    display: inline-block;
+    float: left;
+  }
+  .menu-direction {
+    float: right;
+    display: inline-block;
+    font-size: 24px;
+    
+    a{
+      color: $color-four;
+      line-height: 42px;
+      padding: 0 10px;
+    }
   }
 }
 .menumodal {
